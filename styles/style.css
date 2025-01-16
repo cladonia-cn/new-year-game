@@ -1,0 +1,691 @@
+/* @font-face {
+    font-family: NotoSerifSC;
+    src: url(./NotoSerifSC.ttf);
+} */
+
+/* 
+@font-face {
+    font-family: PublicSans;
+    src: url(./PublicSans.ttf);
+} */
+
+body {
+    /* font-family: NotoSerifSC, serif; */
+    font-family: "Noto Serif SC", serif;
+    text-align: center;
+    background-color: #B72424;
+    color: white;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#question {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+#options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    width: 372px;
+}
+
+#options button {
+    margin: 0;
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    padding: 0;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
+    /* font-family: NotoSerifSC, serif; */
+    font-family: "Noto Serif SC", serif;
+    border: none;
+    border-radius: 50%;
+    background-color: #c73428;
+    color: #fae2b4;
+    transition: all 0.3s ease-in-out;
+}
+
+#result {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+#restartButton {
+    display: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+#pauseBtn {
+    border: unset;
+    border-left: solid 2px #c73428;
+    padding: unset;
+    padding-left: 10px;
+    background-color: transparent;
+    background-image: url(/src/symbol_pause.svg);
+    background-size: 22px;
+    background-position-x: right;
+    background-clip: content-box;
+    color: #FAD07F;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    height: 22px;
+    width: 32px;
+}
+
+#timer {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+#timer::before {
+    content: '';
+    background-image: url(/src/symbol_timer.svg);
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
+.timer-warning {
+    color: #fad07f !important;
+    font-weight: bold;
+}
+
+#timer.timer-warning::before {
+    content: '';
+    background-image: url(/src/symbol_exclamation.svg) !important;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
+#startScreen h1 {
+    padding-top: 64px;
+}
+
+#startScreen h2 {
+    padding-bottom: 8px;
+}
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 82px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #B72424;
+    padding-bottom: 82px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#gameScreen {
+    padding-bottom: 32px;
+    height: calc(100% - 32px);
+}
+
+#level {
+    font-size: 16px;
+}
+
+#level strong {
+    color: #F7C569;
+    font-weight: 900;
+}
+
+.big-button {
+    padding: 12px 24px 16px 24px;
+    font-size: 20px;
+    background-color: #c73428;
+    color: #fae2b4;
+    margin: 0;
+    border: unset;
+    border-radius: 32px;
+    /* font-family: NotoSerifSC, serif; */
+    font-family: "Noto Serif SC", serif;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: background 0.25s ease-in, color 0.25s ease-in;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.big-button:hover {
+    background-color: #e44e42 !important;
+    color: #fff8eb !important;
+}
+
+.big-button:active {
+    opacity: 0.75;
+}
+
+.big-button svg {
+    height: 24px;
+    width: 24px;
+    margin-top: 4px;
+}
+
+.big-button svg path {
+    fill: #fae2b4;
+    transition: fill 0.25s ease-in;
+}
+
+.big-button:hover svg path {
+    fill: #fff8eb;
+}
+
+.big-button.red-packet-btn {
+    background-color: #f1b340 !important;
+    color: #B72424 !important;
+}
+
+.big-button.red-packet-btn:hover {
+    background-color: #F7C569 !important;
+    color: #d73636 !important;
+}
+
+.big-button.red-packet-btn svg path {
+    fill: #B72424 !important;
+    transition: fill 0.25s ease-in;
+}
+
+.big-button.red-packet-btn:hover svg path {
+    fill: #d73636 !important;
+}
+
+.button-group {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+h1,
+h2 {
+    color: #fcdda0;
+    font-weight: 600;
+    margin: 0;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+    margin: 0;
+}
+
+button.select {
+    background-color: #e44e42 !important;
+    color: #fff8eb !important;
+}
+
+button.right-answer {
+    background-color: #F7C569 !important;
+    color: #B72424 !important;
+}
+
+button::after {
+    background-color: #B72424;
+    border: solid 2px #F7C569;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.right-answer::after {
+    background-color: #B72424;
+    background-image: url(/src/symbol_right.svg);
+    border: solid 2px #F7C569;
+}
+
+.select::after {
+    background-color: #B72424;
+    background-image: url(/src/symbol_wrong.svg);
+    border: solid 2px #e44e42;
+}
+
+.right-answer::after,
+.select::after {
+    content: '';
+    position: absolute;
+    margin-left: 55px;
+    margin-top: 55px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    opacity: 1;
+    background-size: 20px;
+}
+
+.cladonia-25-logo {
+    position: fixed;
+    bottom: 32px;
+    z-index: 999;
+    width: 196px;
+    left: calc((100vw / 2) - (196px / 2));
+}
+
+#endGameTitle {
+    margin-bottom: 14px;
+    height: 48px;
+}
+
+#question {
+    /* font-family: SrcMingItalXb; */
+    font-size: 82px;
+    font-weight: 700;
+    background-image: url(/src/chn-bg.svg);
+    background-size: 128px;
+    width: 128px;
+    height: 128px;
+}
+
+@keyframes dialog-backdrop-open-animate {
+    from {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(15px);
+    }
+}
+
+@keyframes dialog-backdrop-close-animate {
+    from {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(15px);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+    }
+}
+
+@keyframes dialog-open-animate {
+    from {
+        opacity: 0;
+        bottom: -512px;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 0px;
+    }
+}
+
+@keyframes dialog-close-animate {
+    from {
+        opacity: 1;
+        bottom: 0px;
+    }
+
+    to {
+        opacity: 0;
+        bottom: -512px;
+    }
+}
+
+dialog {
+    border: none;
+    border-radius: 32px;
+    padding: 24px;
+    margin: 12px;
+    width: calc(100vw - (24px * 2) - (12px * 2));
+    max-width: 380px;
+    min-height: 420px;
+    max-height: 420px;
+    height: 420px;
+    top: unset;
+    transition: all 0.35s ease-in-out 0.3s;
+    animation: dialog-open-animate 0.75s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+dialog::backdrop {
+    animation: dialog-backdrop-open-animate 0.25s ease-in forwards;
+}
+
+dialog.closing::backdrop {
+    animation: dialog-backdrop-close-animate 0.75s ease-out forwards;
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 420px;
+    justify-content: space-between;
+}
+
+.dialog-content h2 {
+    color: unset;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 28px;
+    margin: 14px 0 20px 0;
+}
+
+.close-btn {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    height: 28px;
+    width: 28px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-btn svg path {
+    fill: #1c1c1e;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.dialog-buttons button {
+    flex: 1;
+    padding: 14px 12px 16px 12px;
+    border-radius: 12px;
+    border: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: normal;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes red-packet-preview-animate {
+    25% {
+        transform: rotate3d(0, 1, 0, 90deg) scale(0.75);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate3d(0, 1, 0, 0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.red-packet-preview {
+    width: 164px;
+    animation: red-packet-preview-animate 1.75s cubic-bezier(0, 0.75, 0.35, 1) forwards;
+    transform: rotate3d(0, 1, 0, 90deg) scale(0.75);
+    opacity: 0;
+}
+
+.desktop-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background-color: rgb(255 255 255);
+    color: #000000; */
+    background-color: #c73428;
+    color: #fae2b4;
+    padding: 16px 24px;
+    /* border-radius: 8px; */
+    border-radius: 32px;
+    font-size: 16px;
+    z-index: 9999;
+    animation: toast-in 0.3s ease-out;
+}
+
+.desktop-toast.fade-out {
+    animation: toast-out 0.3s ease-in forwards;
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes toast-out {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        filter: blur(0px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+        filter: blur(10px);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    dialog {
+        background-color: #1c1c1e;
+        color: #ffffff;
+    }
+
+    .dialog-content h2 {
+        color: #ffffff;
+    }
+
+    .close-btn {
+        background-color: #2c2c2e;
+    }
+
+    .close-btn svg path {
+        fill: #ffffff;
+    }
+
+    .dialog-buttons button {
+        background-color: #2c2c2e;
+        color: #ffffff;
+    }
+
+    .dialog-buttons button:hover {
+        background-color: #3a3a3c;
+    }
+
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #B72424;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #F7C569;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#loadingText,
+.loadingTitle {
+    color: #fae2b4;
+    line-height: 36px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.loadingTips {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    max-width: 326px;
+    /* line-height: 36px; */
+    position: absolute;
+    bottom: 116px;
+}
+
+a.skip-link {
+    color: #fae2b4;
+    text-underline-offset: 2px;
+}
+
+#loader {
+    height: 64px;
+    width: 64px;
+    /* position: fixed; */
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.circular {
+    animation: rotate 2s linear infinite;
+    height: 48px;
+    transform-origin: center center;
+    width: 48px;
+    position: absolute;
+}
+
+#loader .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke: #fae2b4;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+
+.game-over-img {
+    width: 196px;
+    height: 48px;
+    background-image: url('/src/game-over.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 14px;
+}
+
+.time-over-img {
+    background-image: url('/src/time-over.svg');
+}
+
+.select-wrong-img {
+    background-image: url('/src/select-wrong.svg');
+}
+
+.pause-screen {
+    position: fixed;
+    /* background: rgba(0, 0, 0, 0.85); */
+    background: radial-gradient(50% 50%, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.75) 100%);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    padding-bottom: 20px;
+    height: calc(100vh - 20px);
+}
+
+.pause-screen h2 {
+    color: #FAD07F;
+    font-size: 2em;
+    margin-bottom: 2em;
+}
